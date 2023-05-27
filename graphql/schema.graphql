@@ -46,13 +46,25 @@ type Query {
 type Mutation {
   createblog(title: String!, description: String!): InsertResult!
   createUser(email: String!, password: String!): InsertResult!
+  updateUser(id: ID!, email: String, password: String): InsertResult!
+  deleteUser(id: ID!): InsertResult!
   createToken(email: String!, password: String!): TokenResult!
+  createMessage(content: String!): Message!
 }
 
 type Subscription {
   reviewblog(token: String!): InsertResult!
 }
 
-  type Query {
+type Query {
     user: [User]
-  }
+}
+
+type Subscription {
+  newMessage: Message!
+}
+
+type Message {
+  id: ID!
+  content: String!
+}
